@@ -1,7 +1,6 @@
 use std::{any::type_name, fmt::Display, time::Instant};
 
-use aoc2024::*;
-use glam::ivec2;
+use aoc2025::*;
 
 fn time<F, N>(f: F, input: &str)
 where
@@ -14,7 +13,7 @@ where
 
     println!(
         "{} Time {} us: {answer}",
-        type_name::<F>().trim_start_matches("aoc2024::days::"),
+        type_name::<F>().trim_start_matches("aoc2025::days::"),
         elapsed.as_micros()
     );
 }
