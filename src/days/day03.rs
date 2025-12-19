@@ -39,12 +39,38 @@ fn test_a() {
     assert_eq!(a(INPUT), 17142);
 }
 
-pub fn b(input: &str) -> i32 {
-    0
+pub fn b(input: &str) -> i64 {
+    let mut max_joltage = 0;
+
+    for line in input.lines() {
+        let bank = line.as_bytes();
+
+        let mut start_index = 0;
+
+        for battery in 0..12 {
+            let remaining = 12 - battery;
+
+            for digit in (b'0'..=b'9').rev() {
+                if let Some(index) = bank[start_index..(bank.len() - remaining + 1)]
+                    .iter()
+                    .position(|d| *d == digit)
+                {
+                    start_index += index + 1;
+                    max_joltage += (digit - b'0') as i64 * 10i64.pow((remaining - 1) as u32);
+
+                    break;
+                }
+            }
+        }
+
+        println!();
+    }
+
+    max_joltage
 }
 
 #[test]
 fn test_b() {
-    assert_eq!(b(TEST_INPUT), 0);
-    assert_eq!(b(INPUT), 0);
+    assert_eq!(b(TEST_INPUT), 3121910778619);
+    assert_eq!(b(INPUT), 169935154100102);
 }
