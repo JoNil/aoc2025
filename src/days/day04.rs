@@ -55,9 +55,9 @@ pub fn b(input: &str) -> i32 {
     let mut map = Vec::new();
     let mut stride = 0;
 
-    for (y, line) in input.lines().enumerate() {
+    for line in input.lines() {
         stride = line.len();
-        for (x, item) in line.bytes().enumerate() {
+        for item in line.bytes() {
             map.push(item);
         }
     }
@@ -116,5 +116,5 @@ pub fn b(input: &str) -> i32 {
 #[test]
 fn test_b() {
     assert_eq!(b(TEST_INPUT), 43);
-    assert_eq!(b(INPUT), 0);
+    assert_eq!(b(INPUT), 9120);
 }
